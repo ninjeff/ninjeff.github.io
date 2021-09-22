@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Linear lists</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <h1>Linear lists</h1>
+    <section>
+        <h2>Data types</h2>
+        <p>There is a lot to say about types; I might do so later.</p>
+        <p>
+            For now let's create an ordered type to use in some of our examples. The elements of this type are not numbers so we won't be tempted to do arithmetic with them. We define:
+            $$\mathsf{Symbol}\equiv\bigcirc|\heartsuit|\triangle|\square|\star$$
+            and order the elements as above.
+        </p>
+    </section>
+    <section>
+        <h2>Components</h2>
+        <p>Fix a field $F$ and an ordered type $I$ (our <i>index type</i>). We introduce the type $\mathsf{Component}(F,I)$, the elements of which are <i>components</i>, ordered pairs of elements of $F$ and $I$. We write a component as $c:\mathsf{Component}(F,I)=(\lambda,i)$, where $\lambda:F$ and $i:I$. $\lambda$ is called the <i>coefficient</i> of the component and $i$ its <i>index</i>.</p>
+        <section>
+            <h3>Examples</h3>
+            <ul>
+                <li>$(\frac{5}{13},\heartsuit):\mathsf{Component}(\mathbb{Q},\mathsf{Symbol})$</li>
+                <li>$(1,560):\mathsf{Component}(\mathbb{F}_5,\mathsf{Nat})$</li>
+                <li>$(\frac{2}{3},1):\mathsf{Component}(\mathbb{Q},\mathsf{3})$</li>
+            </ul>
+        </section>
+    </section>
+    <section>
+        <h2>Linear lists</h2>
+        <p>We now introduce the type $\mathsf{LinearList}(F,I)$. The elements of this type are <i>linear lists</i>, which are lists of components with the following three equivalence relations:</p>
+        <ol>
+            <li>$[(\lambda_1,i_1),(\lambda_2,i_2)]=[(\lambda_2,i_2),(\lambda_1,i_1)]$ (the order of components is unimportant)</li>
+            <li>$[(\lambda_1,i),(\lambda_2,i)]=[(\lambda_1+\lambda_2,i)]$ (components with the same index can be merged by adding their coefficients)</li>
+            <li>$[(0,i)]=[]$ (components with coefficient $0$ can be removed)</li>
+        </ol>
+        <p>We say that a linear list is in <i>canonical form</i> if it meets three criteria:</p>
+        <ol>
+            <li>the components are ordered according to their indices' ordering</li>
+            <li>there is at most one component with any given index</li>
+            <li>no component has coefficient $0$</li>
+        </ol>
+        <p>Note that the three criteria are in 1-1 correspondence with the three equivalence relations.</p>
+        <section>
+            <h3>Examples</h3>
+            <ul>
+                <li>$[(1,0),(3,2),(2,43)]:\mathsf{LinearList}(\mathbb{F}_5,\mathsf{Nat})$ is in canonical form.</li>
+                <li>$[(\frac{5}{13},\heartsuit),(\frac{12}{13},\triangle)]:\mathsf{LinearList}(\mathbb{Q},\mathsf{Symbol})$ is in canonical form.</li>
+                <li>$[(\frac{2}{3},1)]:\mathsf{LinearList}(\mathbb{Q},\mathsf{3})$ is in canonical form.</li>
+                <li>$[]:\mathsf{LinearList}(\mathbb{Q},\mathsf{3})$ is in canonical form.</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Addition</h3>
+            <p>We define an addition operation $+$ on linear lists as follows: two linear lists can be added by merging </p>
+        </section>
+    </section>
+</body>
+</html>
