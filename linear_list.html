@@ -45,7 +45,7 @@
             <li>$[(\lambda_1,i),(\lambda_2,i)]=[(\lambda_1+\lambda_2,i)]$ (components with the same index can be merged by adding their coefficients)</li>
             <li>$[(0,i)]=[]$ (components with coefficient $0$ can be removed)</li>
         </ol>
-        <p>We say that a linear list is in <i>canonical form</i> if it meets three criteria:</p>
+        <p>A linear list is in <i>canonical form</i> if it meets three criteria:</p>
         <ol>
             <li>the components are ordered according to their indices' ordering</li>
             <li>there is at most one component with any given index</li>
@@ -61,9 +61,53 @@
                 <li>$[]:\mathsf{LinearList}(\mathbb{Q},\mathsf{3})$ is in canonical form.</li>
             </ul>
         </section>
+        <p>Here is an algorithm to <i>canonicalise</i> (convert to canonical form) a linear list:</p>
+        <ol>
+            <li>Begin at the list's first position</li>
+            <li>Set <code>changed</code> to <code>false</code></li>
+            <li>
+                If the current position is beyond the end of the list:
+                <ol>
+                    <li>If <code>changed</code> is <code>true</code>, then go to step 1</li>
+                    <li>Otherwise, the list is now in canonical form and we're done</li>
+                </ol>
+            </li>
+            <li>
+                If the current component has coefficient $0$:
+                <ol>
+                    <li>Remove the current component from the list</li>
+                    <li>Set <code>changed</code> to <code>true</code></li>
+                    <li>Go to step 3</li>
+                </ol>
+            </li>
+            <li>
+                If the next position is within the list:
+                <ol>
+                    <li>
+                        If the current component and the next component have the same index:
+                        <ol>
+                            <li>Increase the current component's coefficient by the next component's coefficient</li>
+                            <li>Remove the next component from the list</li>
+                            <li>Set <code>changed</code> to <code>true</code></li>
+                            <li>Go to step 3</li>
+                        </ol>
+                    </li>
+                    <li>
+                        If the current component's index is greater than the next component's index:
+                        <ol>
+                            <li>Swap the positions of the two components</li>
+                            <li>Set <code>changed</code> to <code>true</code></li>
+                            <li>Go to step 3</li>
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+            <li>Move to the next position</li>
+            <li>Go to step 3</li>
+        </ol>
         <section>
             <h3>Addition</h3>
-            <p>We define an addition operation $+$ on linear lists as follows: two linear lists can be added by merging </p>
+            <p>We define an addition operation $+$ on linear lists as follows: two linear lists are added by concatenating them and then canonicalising the result.</p>
         </section>
     </section>
 </body>
